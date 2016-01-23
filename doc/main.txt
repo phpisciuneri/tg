@@ -1,0 +1,46 @@
+/** 
+
+\mainpage IPLMCFD: Irregularly Portioned Lagrangian Monte Carlo
+
+
+\section Installation
+\todo Write installation docs
+
+\section Usage
+\todo Write simple usage docs
+
+A comment <!-- Comment --> follows
+
+
+
+
+\defgroup singleton Singleton Classes
+
+Certain classes in IPLMCFD provide a global and unique functionality and therefore are implemented
+using the singleton idiom. A singleton class has the synopsis:
+
+\code
+
+class Foo {
+
+private:
+   Foo();
+   ~Foo(){}
+   
+public: 
+   static const Foo& instance() {
+      static Foo singleton;
+      return singleton;      
+   }
+   
+public:
+
+   // Public interface ...   
+
+};
+
+\endcode
+
+
+
+*/

@@ -1,0 +1,96 @@
+#===========================================================================
+# MISC PARAMETERS 
+#===========================================================================
+disable_carlo 0            // 0 run full particles, 1 only FD
+restart 0                  // 0 fresh run. 1 load and go
+reset_stats 0              // reset statistics if restart. no effect if restart is 0. used by compress during load
+iterbal -1                 // use cell data at this iteration to load balance 
+walltime 0
+
+R 5                       // domain radius 
+L 12                      // domain length
+ngrid 5 5 5           // number of CELLS! in x y and z (y and z must be the same)
+
+// particle's per cell [min, mean, max]. if number of particle in the 
+// cell is less than min, then enough cloning is done to bring it up 
+// to mean. samewise for max, where clustering takes place to bring
+// down to mean. 
+ppc 4 6 8  
+
+
+trace_flush 0              // 1 to flush output of trace at every event. 0 to never flush explicitly. used in cpp_main to set tracer
+iter_trace_flush 100        // if trace_flush is 0 this will flushe trace at every given timestep. no effect if trace_flush is 1 
+carlo_log_level 0          // if 2 logs all particle activity. if 0 or 1 only summary at the end of timestep is logged. used in carlo::activity_log constructor
+carlo_log_flush 0          // same thing as trace_flush applied to carlo log (particle activity log)
+
+dump_initially f stats li cc     // what to dump at 0th iteration
+dump_geometry 1            // set 1 to dump (once per simulation) geometry data (indices, cart/cyl coordinates)
+time_end   1000
+iter_pdump 1000000         // particle data dump frequency  (calls lmcfd::dump_carlo)
+iter_showstuff  25       
+iter_checkpoint 1000    // frequency to save simulation data
+iter_stats_begin 2000   // iteration to begin gathering statistics
+
+iter_end      2    // final iteration (this is NOT the total number of iterations taken in a particular run)
+iter_statdump 500       // frequency to dump statistics
+iter_fdump  500         // eulerian datat dump frequency (calls lmcfd::dump_compress)
+iter_lidump 999999       //  local info dump for carlo nodes (calls lmcfd::dump_local_info)
+iter_ccdump 999999       // cell statistics dump for carlo nodes (calls lmcfd::dump_cell_counts)
+
+
+chem mfc5     // chemistry mechanism - one of preinstalled or a chemkin mechanism filename
+chem_type fullmixh     // full/fullmixh to compute finite kinetics. flamelet to use flamelet.
+chem_reltol 1e-6   // relative tolerance in ODE integration of kinetics
+chem_abstol 1e-7   // absolute tolerance (below this will be assumed zero)
+chem_solver isat   // cpreactor solver - can be isat, vode, lsoda or vodelsoda
+chem_rxnstart 60000   
+chem_tran   tran.dat
+chem_therm  therm.dat
+zero_rtsource 0      // set to 1 to have zero RT source all the time even when particles are reacting
+
+
+ref_L 1.2     // reference length
+ref_U 3000    // reference velocity
+ref_p 1       // reference pressure
+ref_T 300     // reference temperature 
+ref_molfracs CH4 0.5   O2 1.0   N2 3.76 // reference mixture (no need to normalize) (used to compute viscosity, density, cp/cv)
+
+mu_power 0.7                  // viscosity = temperature^mu_power 
+stable 0.4                    // time step stability safe factor 
+
+force_type 2                  // forcing type (see f90enums.h)
+force_basefreqs  0.0940264 0.268796
+force_harmonics  1 2 3 0.5 0.333333333333
+force_phases     0 2.416 1.1635 
+force_factors    1 1 1
+
+force_signal_type  2
+force_basefreq     0.19
+force_harmonics1   1
+force_harmonics23  2
+force_ishelical1   0
+force_ishelical23  1
+
+
+
+
+
+! obsolete
+force_amp  0.16       // forcing amplitude (see forcing.f90)
+force_mod1 0.265461   // forcing mode coeffs (see forcing.f90)
+force_mod2 0.271828   // forcing mode coeffs (see forcing.f90)
+
+
+// OTHER constants
+sgs_model 2    // 1: smagorinsky,  2: mkev
+Csmag 0.1 
+Cmkev 0.05
+Umkev 0.8
+Ci 0.0
+Comega  8.0
+gravity  0
+Sc 0.75
+Sct 0.75 
+
+periods 1 0 1
+nx 33 33 33

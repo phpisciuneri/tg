@@ -1,0 +1,74 @@
+# +-----------------------+
+# | Simulation Parameters |
+# +-----------------------+
+iter_end = 2600      # Maximum number of iterations to take.
+time_end = 999999    # Maximum nondimensional simulation time.
+walltime = 999999    # Run for given walltime (in minutes).
+Re = 100             # Reynolds number for Taylor Green Vortex.
+zoltan_debug_level = 0
+repart_freq = 99999
+
+# +--------------------------+
+# | Decomposition Parameters |
+# +--------------------------+
+save_cpuload = 0     # [true,false]: Output cpu load for restart using   
+                     # wmetis decomposition type.
+decomp_type = metis  # [metis]: Use Metis graph parition.
+                     # [wmetis]: Use Metis weighted graph partition.
+                     #   Requires a cpuload file.
+                     # [block]: Use block decomposition.  Specify ncores.
+ncores = 1 1 1       # Number of partitions in each direction to use for 
+                     # block decomposition.
+redecomp_type = paragon
+					 
+# +---------------------+
+# | Geometry Parameters |
+# +---------------------+
+ppc = 25 35 50         # Particles per cell (min,mean,max): min and max are 
+                       # enforced through clustering and cloning.
+use_clone_cluster = 1  # [true,false]: Enforce ppc min and max through cloning 
+                       # and clustering.
+xmin = 0 0 0           # Nondimensional minimum extents of cartesian domain.
+xmax = 6.283185307179586 6.283185307179586 .1 # Nondimensional maximum extents of cartesian domain.
+ngrid = 51 51 3        # Number of cells / FD points (nx, ny, nz).
+periods = 1 1 1        # [true,false]: Periodicity of boundaries (x, y, z).
+
+# +-------------------------------+
+# | Constant and Model Parameters |
+# +-------------------------------+
+Comega = 8            # LMSE mixing coefficent.
+Sc = 0.75             # Schmidt number.
+mu_power = 0.7        # Sutherland's law exponent: mu = T^mu_power.
+stable = .1           # CFL safety factor: 0 < stable < 1.
+
+# +--------------------------+
+# | I/O and Trace Parameters |
+# +--------------------------+
+iter_fdump = 25          # Iteration frequency to dump Eulerian data.
+iter_output_steps = 1    # Iteration frequency to update steps.out.
+trace_flush = 1          # [true,false]: flush output of tracer at every event.
+trace_flush_iter = 100   # Iteration frequency to flush tracer.
+trace_rank = 0           # Space separated list of ranks to be flushed 
+                         # by tracer.
+carlo_log_flush = 0      # [true,false]: flush output of MC log at every event.
+carlo_log_level = 0      # MC activity log.
+                         # [0]: disable logs.
+                         # [1]: log summary at end of each timestep.
+                         # [2]: log all activity.
+						 
+# +----------------------+
+# | Chemistry Parameters |
+# +----------------------+
+chem = arm1            # chemistry mechanism: name of preinstalled 
+                       # mechanism or a chemkin mechanism filename.
+chem_type = full       # [full]: use finite rate kinetics, mix T.
+                       # [inert]: just mixing, no reaction.
+chem_solver = vode     # [isat, vode, lsoda, vodelsoda]: chemistry ODE 
+                       # integrator.
+chem_reltol = 1.e-7    # Relative tolerence in ODE integration of kinetics.
+chem_abstol = 1.e-7    # Absolute tolerance in ODE integration of kinetics.
+chem_isatetol = 1.e-5  # ISAT error tolerance.
+chem_rxnstart = 0      # Iteration number to begin chemical reaction.
+chem_rxnend = 999999   # Iteration number to end chemical reaction.
+chem_tran = tran.dat   #  Chemkin transport coefficient database file.
+chem_therm = therm.dat # Chemkin thermal coefficient database file.
