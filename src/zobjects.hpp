@@ -127,7 +127,19 @@ namespace iplmcfd {
       }
       *ierr = ZOLTAN_OK;
     }
-      
+
+    //!
+    //! \brief Returns a list of parts to which given objects are assigned
+    //!
+    //! \param[in] data pointer to user-defined data
+    //! \param[in] num_gid_entries number of array entries used to describe a global ID
+    //! \param[in] num_lid_entries number of array entries used to describe a local ID
+    //! \param[in] num_obj number of object IDs in arrays global_ids and local_ids
+    //! \param[in] global_ids Array of global IDs of objects whose part should be returned
+    //! \param[in] local_ids Array of local IDs of objects whose part should be returned
+    //! \param[out] parts Array of part numbers corresponding to the global and local IDs
+    //! \param[out] ierr error code
+    //!
     static void get_part_multi(
         void* data,
         int num_gid_entries,
