@@ -2,6 +2,14 @@
 
 A two dimensional Taylor-Green Vortex with chemical reaction for accessing load balancing tools.
 
+## Prerequisites
+
+- tvmet
+- chemkinpp `svn co https://collab.sam.pitt.edu/svn/chemkinpp/trunk chemkinpp`
+- paragon git submodule
+- zoltan
+- metis `svn co https://collab.sam.pitt.edu/svn/metis/trunk metis`
+
 ## Getting Started
 
 ### Building on mpi.sam.pitt.edu

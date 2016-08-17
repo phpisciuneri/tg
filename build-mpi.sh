@@ -1,8 +1,11 @@
 # source this script to build
-# $ . build-frank.sh
+# $ . build-mpi.sh
 
 # set environment
 module purge
+export SYS_TYPE=haswell
+source /opt/sam/spack/share/spack/setup-env.sh
+module load intel
 spack load boost
 spack load hwloc%intel
 
