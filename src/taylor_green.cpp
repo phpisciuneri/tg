@@ -167,6 +167,8 @@ namespace iplmcfd
       m_zz->Set_Param("CHECK_GRAPH", "1" );
       m_zz->Set_Param("GRAPH_PACKAGE", "PARMETIS");
     }
+    else if ( m_simparam.redecomp_type == "paragon" )
+      m_zz->Set_Param( "AUTO_MIGRATE", "FALSE" );
     else
       throw std::runtime_error( "error redecomp type." );
 
